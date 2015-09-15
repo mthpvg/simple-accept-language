@@ -7,7 +7,6 @@ function findLanguage(req, supportedLanguages, defaultLanguage) {
   var languages = [],
   qualities = [],
   acceptLanguages,
-  foundLanguage,
   isLangSupported;
 //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -INITIALIZATION
   acceptLanguages = req.headers["accept-language"].split(",");
@@ -31,11 +30,10 @@ function findLanguage(req, supportedLanguages, defaultLanguage) {
   });
 //- - RETURNS HIGHEST QUALITY LANGUAGE OR IF NOT SUPPORTED THE DEFAULT LANGUAGE
   if (isLangSupported) {
-    foundLanguage = languages[maxIndex];
+    return languages[maxIndex];
   } else {
-      foundLanguage = defaultLanguage;
+      return = defaultLanguage;
   }
-  return foundLanguage;
 }
 //-----------------------------------------------------------------------------
 //                                     FUNCTIONS
