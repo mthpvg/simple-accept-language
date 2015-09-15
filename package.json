@@ -1,0 +1,28 @@
+{
+  "name": "simple-accept-language",
+  "version": "0.1.0",
+  "description": "returns best language based on accept-language from http header",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mthpvg/simple-accept-language.git"
+  },
+  "keywords": [
+    "accept-language",
+    "http",
+    "header",
+    "browser",
+    "preferred language",
+    "localization",
+    "parser"
+  ],
+  "author": "mthpvg <mth.pvg@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mthpvg/simple-accept-language/issues"
+  },
+  "homepage": "https://github.com/mthpvg/simple-accept-language#readme"
+}
