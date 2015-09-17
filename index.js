@@ -2,7 +2,7 @@
 //-----------------------------------------------------------------------------
 //                                     MAIN
 //-----------------------------------------------------------------------------
-function findLanguage(req, supportedLanguages, defaultLanguage) {
+function findLanguage(req, defaultLanguage, supportedLanguages) {
   //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - VARIABLES
   var languages = [],
   qualities = [],
@@ -10,6 +10,8 @@ function findLanguage(req, supportedLanguages, defaultLanguage) {
   isLangSupported;
   //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -INITIALIZATION
   isLangSupported = false;
+  //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - PRE-ALPHA
+  console.log(simple-accept-language [PRE-ALPHA]);
   //- - - - - - - - CURL AND CRAWLERS DON'T HAVE ACCEPT-LANGUAGE IN HTTP HEADER
   if (typeof req.headers["accept-language"] === "undefined") {
     return defaultLanguage;

@@ -1,6 +1,14 @@
-# simple-accept-language
+# simple-accept-language [PRE-ALPHA]
+
+##WARNING [PRE-ALPHA]
 
 Returns best language based on accept-language from http header
+
+## Installation
+
+```bash
+$ npm install simple-accept-language
+```
 
 ## Quick Start with the Express framework
 
@@ -10,18 +18,15 @@ simpleLanguage = require('../index'),
 app = express();
 
 app.get('/', function (req, res) {
-  res.send(simpleLanguage(req, ["en", "fr"], "en"));
+  var defaultLanguage = "en",
+  supportedLanguages = ["en", "fr"];
+  res.send(simpleLanguage(req, defaultLanguage, supportedLanguages));
 });
 
 app.listen(3000);
 ```
 
-## Installation
-
-```bash
-$ npm install simple-accept-language
-```
-
 ## TODO
 
 - Testing
+- optional arguments
