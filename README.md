@@ -1,10 +1,10 @@
 # simple-accept-language [PRE-ALPHA]
 
-##WARNING [PRE-ALPHA]
+## WARNING [PRE-ALPHA]
 
 Returns best language based on accept-language from http header
 
-## Installation
+## Installation WARNING [PRE-ALPHA]
 
 ```bash
 $ npm install simple-accept-language
