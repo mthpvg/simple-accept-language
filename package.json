@@ -1,6 +1,6 @@
 {
   "name": "simple-accept-language",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "returns best language based on accept-language from http header",
   "main": "index.js",
   "scripts": {
