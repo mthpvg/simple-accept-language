@@ -6,7 +6,7 @@ Returns best language based on accept-language from http header
 
 ```js
 var express = require('express'),
-simpleLanguage = require('simple-accept-language'),
+simpleLanguage = require('../index'),
 app = express();
 
 app.get('/', function (req, res) {

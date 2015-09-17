@@ -3,20 +3,22 @@
 //                                     MAIN
 //-----------------------------------------------------------------------------
 function findLanguage(req, supportedLanguages, defaultLanguage) {
-//- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - VARIABLES
+  //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - VARIABLES
   var languages = [],
   qualities = [],
   acceptLanguages,
   isLangSupported;
-//- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -INITIALIZATION
-  acceptLanguages = req.headers["accept-language"].split(",");
+  //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -INITIALIZATION
   isLangSupported = false;
-//- - - - - - - - - CURL AND CRAWLERS DON'T HAVE ACCEPT-LANGUAGE IN HTTP HEADER
-  if (!acceptLanguages) {
+  //- - - - - - - - CURL AND CRAWLERS DON'T HAVE ACCEPT-LANGUAGE IN HTTP HEADER
+  if (typeof req.headers["accept-language"] === "undefined") {
     return defaultLanguage;
+  } else {
+    acceptLanguages = req.headers["accept-language"].split(",");
   }
-//- - - - - - - - - - - - - - - - - - - - - - - - LANGUAGES AND THEIR QUALITIES
-  acceptLanguages.forEach(function(language, index){
+  //- - - - - - - - - - - - - - - - - - - - - - - LANGUAGES AND THEIR QUALITIES
+  for (var i = 0; i < acceptLanguages.length; i++) {
+    var language = acceptLanguages[i];
     languages.push(language.substring(0, 2));
     var qIndex = language.indexOf("q=");
     if (qIndex !== -1){
@@ -24,29 +26,28 @@ function findLanguage(req, supportedLanguages, defaultLanguage) {
     } else {
       qualities.push(1.0);
     }
-  });
-//- - - - - - - - - - - - - - - - - - - - - - LANGUAGE WITH THE HIGHEST QUALITY
-  var maxIndex = maxOf(qualities);
-  supportedLanguages.forEach(function(language){
-    if (languages[maxIndex] === language) {
+  }
+  //- - - - - - - - - - - - - - - - - - - - - LANGUAGE WITH THE HIGHEST QUALITY
+  var maxIndex = indexOfMax(qualities);
+  for (var i = 0; i < supportedLanguages.length; i++) {
+    if (languages[maxIndex] === supportedLanguages[i]) {
       isLangSupported = true;
     }
-  });
-//- - RETURNS HIGHEST QUALITY LANGUAGE OR IF NOT SUPPORTED THE DEFAULT LANGUAGE
+  }
+  //- RETURNS HIGHEST QUALITY LANGUAGE OR IF NOT SUPPORTED THE DEFAULT LANGUAGE
   if (isLangSupported) {
     return languages[maxIndex];
   } else {
-      return = defaultLanguage;
+    return defaultLanguage;
   }
 }
 //-----------------------------------------------------------------------------
 //                                     FUNCTIONS
 //-----------------------------------------------------------------------------
-function maxOf(array) {
-  var maxIndex = 0;
-  var max = array[maxIndex];
+function indexOfMax(array) {
+  var maxIndex = 0,
+  max = array[maxIndex];
   for (var i = 0; i < array.length; i++) {
-    array[i]
     if (array[i] > max) {
       max = array[i];
       maxIndex = i;
