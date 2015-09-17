@@ -45,12 +45,13 @@ function findLanguage(req, supportedLanguages, defaultLanguage) {
 function maxOf(array) {
   var maxIndex = 0;
   var max = array[maxIndex];
-  array.forEach(function(elt, index){
-    if (elt > max) {
-      max = elt;
-      maxIndex = index;
+  for (var i = 0; i < array.length; i++) {
+    array[i]
+    if (array[i] > max) {
+      max = array[i];
+      maxIndex = i;
     }
-  });
+  }
   return maxIndex;
 }
 //-----------------------------------------------------------------------------
