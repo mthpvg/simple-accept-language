@@ -16,8 +16,10 @@
     "header",
     "browser",
     "preferred language",
+    "simple language",
     "localization",
-    "parser"
+    "parser",
+    "express"
   ],
   "author": "mthpvg <mth.pvg@gmail.com>",
   "license": "MIT",

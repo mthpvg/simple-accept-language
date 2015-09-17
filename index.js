@@ -11,6 +11,10 @@ function findLanguage(req, supportedLanguages, defaultLanguage) {
 //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -INITIALIZATION
   acceptLanguages = req.headers["accept-language"].split(",");
   isLangSupported = false;
+//- - - - - - - - - CURL AND CRAWLERS DON'T HAVE ACCEPT-LANGUAGE IN HTTP HEADER
+  if (!acceptLanguages) {
+    return defaultLanguage;
+  }
 //- - - - - - - - - - - - - - - - - - - - - - - - LANGUAGES AND THEIR QUALITIES
   acceptLanguages.forEach(function(language, index){
     languages.push(language.substring(0, 2));
