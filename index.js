@@ -2,19 +2,15 @@
 //-----------------------------------------------------------------------------
 //                                     MAIN
 //-----------------------------------------------------------------------------
-function findLanguage(req, defaultLanguage, supportedLanguages) {
+function findLanguage(req) {
   //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - VARIABLES
   var languages = [],
   qualities = [],
   acceptLanguages,
   isLangSupported;
-  //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -INITIALIZATION
-  isLangSupported = false;
-  //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - PRE-ALPHA
-  console.log(simple-accept-language [PRE-ALPHA]);
   //- - - - - - - - CURL AND CRAWLERS DON'T HAVE ACCEPT-LANGUAGE IN HTTP HEADER
   if (typeof req.headers["accept-language"] === "undefined") {
-    return defaultLanguage;
+    return "crawler";
   } else {
     acceptLanguages = req.headers["accept-language"].split(",");
   }
@@ -31,17 +27,7 @@ function findLanguage(req, defaultLanguage, supportedLanguages) {
   }
   //- - - - - - - - - - - - - - - - - - - - - LANGUAGE WITH THE HIGHEST QUALITY
   var maxIndex = indexOfMax(qualities);
-  for (var i = 0; i < supportedLanguages.length; i++) {
-    if (languages[maxIndex] === supportedLanguages[i]) {
-      isLangSupported = true;
-    }
-  }
-  //- RETURNS HIGHEST QUALITY LANGUAGE OR IF NOT SUPPORTED THE DEFAULT LANGUAGE
-  if (isLangSupported) {
-    return languages[maxIndex];
-  } else {
-    return defaultLanguage;
-  }
+  return languages[maxIndex];
 }
 //-----------------------------------------------------------------------------
 //                                     FUNCTIONS
